@@ -1,5 +1,5 @@
 Class {
 	#name : #VEdge,
-	#superclass : #VRoot,
-	#category : #Vedo
+	#superclass : #VEntity,
+	#category : #'Vedo-Core'
 }
