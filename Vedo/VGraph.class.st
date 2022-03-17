@@ -9,6 +9,17 @@ Class {
 }
 
 { #category : #public }
+VGraph >> addEdge: anEdge [
+	edges add: anEdge.
+	anEdge graph: self.
+]
+
+{ #category : #public }
+VGraph >> addEdges: aCollectionOfEdges [
+	edges do: [ :each | self addEdge: each ]
+]
+
+{ #category : #public }
 VGraph >> addNode: aNode [
 	nodes add: aNode.
 	aNode graph: self.
