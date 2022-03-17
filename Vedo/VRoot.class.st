@@ -1,5 +1,5 @@
 Class {
 	#name : #VRoot,
 	#superclass : #Object,
-	#category : #Vedo
+	#category : #'Vedo-Core'
 }
