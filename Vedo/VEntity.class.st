@@ -2,6 +2,7 @@ Class {
 	#name : #VEntity,
 	#superclass : #VRoot,
 	#instVars : [
+		'model',
 		'graph'
 	],
 	#category : #'Vedo-Core'
@@ -23,4 +24,16 @@ VEntity >> graph: anObject [
 VEntity >> initialize [
 	super initialize.
 	
+]
+
+{ #category : #accessing }
+VEntity >> model [
+
+	^ model
+]
+
+{ #category : #accessing }
+VEntity >> model: anObject [
+
+	model := anObject
 ]
