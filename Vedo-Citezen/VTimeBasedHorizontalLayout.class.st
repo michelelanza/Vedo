@@ -38,18 +38,11 @@ VTimeBasedHorizontalLayout >> layoutNodes: aCollectionOfNodes [
 	horizontalOffset := 20.
 	verticalOffset := 2.
 	sorted do: [ :each | 
-		each x: currentX.
-		(each model year = yearCounter)
-			ifTrue: [ 
-				each x: currentX.
-				each y: currentY + (each height / 2).
-				currentY := currentY + each height + verticalOffset ]
-			ifFalse: [ 
-				currentY := 0.
-				yearCounter := each model year.
-				currentX := currentX + horizontalOffset.
-				each x: currentX.
-				each y: currentY + (each height / 2).
-				currentY := currentY + each height + verticalOffset.				
-				 ] ]
+		(each model year = yearCounter) ifFalse: [ 
+			currentY := 0.
+			yearCounter := each model year.
+			currentX := currentX + horizontalOffset ].
+		each x: currentX.	
+		each y: currentY + (each height / 2).	
+		currentY := currentY + each height + verticalOffset ]
 ]

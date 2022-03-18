@@ -50,7 +50,8 @@ VPublicationNode >> extractKeyFromEntry [
 
 { #category : #protected }
 VPublicationNode >> extractYearFromEntry [
-	self year: self entry year value asNumber
+	self entry year value = '' ifTrue: [ self year= 1970 ] ifFalse: [ 
+	self year: self entry year value asNumber ]
 	
 ]
 
