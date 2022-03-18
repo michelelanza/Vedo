@@ -27,7 +27,7 @@ VGraph >> addNode: aNode [
 
 { #category : #public }
 VGraph >> addNodes: aCollectionOfNodes [
-	nodes do: [ :each | self addNode: each ]
+	aCollectionOfNodes do: [ :each | self addNode: each ].
 ]
 
 { #category : #accessing }

@@ -3,7 +3,8 @@ Class {
 	#superclass : #VRoot,
 	#instVars : [
 		'model',
-		'graph'
+		'graph',
+		'vizorEntity'
 	],
 	#category : #'Vedo-Core'
 }
@@ -36,4 +37,16 @@ VEntity >> model [
 VEntity >> model: anObject [
 
 	model := anObject
+]
+
+{ #category : #accessing }
+VEntity >> vizorEntity [
+
+	^ vizorEntity
+]
+
+{ #category : #accessing }
+VEntity >> vizorEntity: anObject [
+
+	vizorEntity := anObject
 ]
