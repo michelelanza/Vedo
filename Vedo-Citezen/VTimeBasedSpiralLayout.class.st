@@ -37,3 +37,34 @@ VTimeBasedSpiralLayout >> layoutNodes: aCollectionOfNodes [
 		 ]
 	
 ]
+
+{ #category : #public }
+VTimeBasedSpiralLayout >> layoutShapes: aCollectionOfShapes [
+	| currentX currentY offset jumpCounter dx dy segmentLength segmentDone |
+	currentX := 0.
+	currentY := 0.
+	offset := 20.
+	segmentLength := 1.
+	segmentDone := 0.
+	jumpCounter := 1.
+	dx := 1.
+	dy := 0.
+	1 to: aCollectionOfShapes size do: [ :each | | buffer |
+		"Transcript show: currentX printString, ' ', currentY printString, ' '; cr."
+		currentX := currentX + dx.
+		currentY := currentY + dy.
+		(aCollectionOfShapes at: each) x: currentX * 20.
+		(aCollectionOfShapes at: each) y: currentY * 20.
+		segmentDone := segmentDone + 1.
+		
+		segmentDone = segmentLength ifTrue: [ 
+			segmentDone := 0.
+			buffer := dy.
+			dy := dx negated.
+			dx := buffer.
+			dx = 0 ifTrue: [  segmentLength := segmentLength + 2 ]
+			 ]
+			
+		 ]
+	
+]
