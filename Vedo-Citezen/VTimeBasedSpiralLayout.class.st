@@ -94,7 +94,7 @@ VTimeBasedSpiralLayout >> layoutNodes: aCollectionOfNodes withCellSize: offset [
 ]
 
 { #category : #public }
-VTimeBasedSpiralLayout >> layoutNodes: aCollectionOfNodes withCellSize: offset withSpread: spread [
+VTimeBasedSpiralLayout >> layoutNodes: aCollectionOfNodes withCellSize: offset withSpread2: spread [
 	| currentX currentY dx dy segmentLength segmentDone |
 	currentX := 0.
 	currentY := 0.
@@ -102,8 +102,12 @@ VTimeBasedSpiralLayout >> layoutNodes: aCollectionOfNodes withCellSize: offset w
 	segmentDone := 0.
 	dx := 1.
 	dy := 0.
-	aCollectionOfNodes do: [ :each | | buffer |
-		Transcript show: currentX printString, ' ', currentY printString, ' ', each model key, ' ', segmentLength printString; cr.
+	aCollectionOfNodes first x: 0; y: 0.
+	currentX := 1.
+	aCollectionOfNodes allButFirstDo: [ :each | | buffer |
+		Transcript show: currentX printString, ' ', currentY printString, ' ', each model key, ' ', (segmentDone + 1) printString, '/', segmentLength printString; cr.
+		"(each model key = 'Lanz1999a') ifTrue: [ self halt ]."
+		
 		each x: currentX * offset; y: currentY * offset.
 		currentX := currentX + dx.
 		currentY := currentY + dy.
@@ -114,7 +118,39 @@ VTimeBasedSpiralLayout >> layoutNodes: aCollectionOfNodes withCellSize: offset w
 			dy := dx negated.
 			dx := buffer.
 			dx = 0 ifTrue: [  segmentLength := segmentLength + spread ]
-			]
+			].
+		
+		]
+	
+]
+
+{ #category : #public }
+VTimeBasedSpiralLayout >> layoutNodes: aCollectionOfNodes withCellSize: offset withSpread: spread [
+	| currentX currentY dx dy segmentLength segmentDone |
+	currentX := 0.
+	currentY := 0.
+	segmentLength := 1.
+	segmentDone := 0.
+	dx := 1.
+	dy := 0.
+	aCollectionOfNodes do: [ :each | | buffer |
+		"Transcript show: 'length: ', segmentLength printString; cr.
+		Transcript show: currentX printString, ' ', currentY printString, ' ', each model key, ' ', (segmentDone + 1) printString, '/', segmentLength printString."
+		each x: currentX * offset; y: currentY * offset.
+		currentX := currentX + dx.
+		currentY := currentY + dy.
+		segmentDone := segmentDone + 1.
+		
+		"Transcript show: 'dx:', dx printString, ' dy:', dy printString; cr."
+		
+		segmentDone = segmentLength ifTrue: [ 
+			segmentDone := 0.
+			buffer := dy.
+			dy := dx negated.
+			dx := buffer.
+			dx = 0 ifTrue: [  segmentLength := segmentLength + spread ]
+			].
+		
 		]
 	
 ]
