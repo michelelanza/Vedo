@@ -68,6 +68,62 @@ VTimeBasedSpiralLayout >> layoutNodes: aCollectionOfNodes [
 ]
 
 { #category : #public }
+VTimeBasedSpiralLayout >> layoutNodes: aCollectionOfNodes withCellSize2: offset [ 
+ 	| x y layer leg |
+	x := 0.
+	y := 0.
+	layer := 1.
+	leg := 0.
+	aCollectionOfNodes first x: 0; y: 0.
+	2 to: aCollectionOfNodes size do: [ :each |
+		leg = 0 ifTrue: [ 
+			x := x+1.
+			x = layer ifTrue: [ leg := leg +1 ]. ].
+		leg = 1 ifTrue: [ 
+			y := y + 1.
+			y = layer ifTrue: [ leg := leg + 1 ]. ].
+		leg = 2 ifTrue: [ 
+			x := x - 1.
+			x negated = layer ifTrue: [ leg := leg + 1 ]. ].
+		leg = 3 ifTrue: [ 
+			y := y -1.
+			y negated = layer ifTrue: [ leg := 0. layer := layer + 1 ] ].
+		(aCollectionOfNodes at: each) x: offset * x; y: offset * y.
+		  
+		]		 
+]
+
+{ #category : #public }
+VTimeBasedSpiralLayout >> layoutNodes: aCollectionOfNodes withCellSize3: offset [ 
+ 	| x y layer leg |
+	x := 0.
+	y := 0.
+	layer := 1.
+	leg := 0.
+	aCollectionOfNodes first x: 0; y: 0.
+	2 to: aCollectionOfNodes size do: [ :each |
+		leg = 0 ifTrue: [ 
+			x := x+1.
+			x = layer ifTrue: [ leg := leg +1 ]. ]
+		ifFalse: [
+		leg = 1 ifTrue: [ 
+			y := y + 1.
+			y = layer ifTrue: [ leg := leg + 1 ]. ]
+		ifFalse: [ 
+		leg = 2 ifTrue: [ 
+			x := x - 1.
+			x negated = layer ifTrue: [ leg := leg + 1 ]. ]
+		ifFalse: [  
+		leg = 3 ifTrue: [ 
+			y := y -1.
+			y negated = layer ifTrue: [ leg := 0. layer := layer + 1 ] ].
+		  ] ] ].
+		(aCollectionOfNodes at: each) x: offset * x; y: offset * y.
+		  
+		]		 
+]
+
+{ #category : #public }
 VTimeBasedSpiralLayout >> layoutNodes: aCollectionOfNodes withCellSize: offset [
 	| currentX currentY dx dy segmentLength segmentDone |
 	currentX := 0.
