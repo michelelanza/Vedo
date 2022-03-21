@@ -19,15 +19,19 @@ VTimeBasedSpiralLayout >> layoutNodes: aCollectionOfNodes [
 	dx := 1.
 	dy := 0.
 	1 to: aCollectionOfNodes size do: [ :each | | buffer |
+		Transcript show: currentX printString, ' ', currentY printString, ' '; cr.
 		currentX := currentX + dx.
 		currentY := currentY + dy.
+		(aCollectionOfNodes at: each) x: currentX * 20.
+		(aCollectionOfNodes at: each) y: currentY * 20.
 		segmentDone := segmentDone + 1.
+		
 		segmentDone = segmentLength ifTrue: [ 
 			segmentDone := 0.
 			buffer := dy.
 			dy := dx negated.
 			dx := buffer.
-			dx = 0 ifTrue: [  segmentLength := segmentLength + 1 ]
+			dx = 0 ifTrue: [  segmentLength := segmentLength + 2 ]
 			 ]
 			
 		 ]
