@@ -24,3 +24,8 @@ VSYNNode >> initialize [
 	super initialize.
 	id := 0.
 ]
+
+{ #category : #public }
+VSYNNode >> reifyWith: aJSONBlob [
+	self id: (aJSONBlob at: #id)
+]

@@ -79,7 +79,7 @@ VSYNFileHistory >> path: anObject [
 
 { #category : #public }
 VSYNFileHistory >> reifyWith: aJSONBlob [
-	self id: (aJSONBlob at: #id).
+	super reifyWith: aJSONBlob.
 	self path: (aJSONBlob at: #path).
 	self fileName: (aJSONBlob at: #name).
 	(aJSONBlob at: #aliases) allButFirst isEmpty ifFalse: [ 

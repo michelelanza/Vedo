@@ -2,7 +2,10 @@ Class {
 	#name : #VSYNProject,
 	#superclass : #VSYNNode,
 	#instVars : [
-		'fileHistories'
+		'projectName',
+		'projectURL',
+		'fileHistories',
+		'fileVersions'
 	],
 	#category : #'Vedo-SYN'
 }
@@ -24,8 +27,53 @@ VSYNProject >> fileHistories: anObject [
 	fileHistories := anObject
 ]
 
+{ #category : #accessing }
+VSYNProject >> fileVersions [
+
+	^ fileVersions
+]
+
+{ #category : #accessing }
+VSYNProject >> fileVersions: anObject [
+
+	fileVersions := anObject
+]
+
 { #category : #'initialize-release' }
 VSYNProject >> initialize [
 	super initialize.
 	fileHistories := OrderedCollection new.
+	fileVersions := OrderedCollection new.
+	projectName := ''.
+	projectURL := ''.
+]
+
+{ #category : #accessing }
+VSYNProject >> projectName [
+
+	^ projectName
+]
+
+{ #category : #accessing }
+VSYNProject >> projectName: anObject [
+
+	projectName := anObject
+]
+
+{ #category : #accessing }
+VSYNProject >> projectURL [
+
+	^ projectURL
+]
+
+{ #category : #accessing }
+VSYNProject >> projectURL: anObject [
+
+	projectURL := anObject
+]
+
+{ #category : #public }
+VSYNProject >> reifyWith: aJSONBlob [
+	super reifyWith: aJSONBlob.
+	self projectName: (aJSONBlob at: #name). 
 ]
