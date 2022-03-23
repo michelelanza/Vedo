@@ -4,6 +4,7 @@ Class {
 	#instVars : [
 		'projectName',
 		'projectURL',
+		'projectVersions',
 		'fileHistories',
 		'fileVersions'
 	],
@@ -18,6 +19,11 @@ VSYNProject >> addFileHistory: aFileHistory [
 { #category : #public }
 VSYNProject >> addFileVersion: aFileVersion [
 	self fileVersions add: aFileVersion
+]
+
+{ #category : #public }
+VSYNProject >> addProjectVersion: aProjectVersion [
+	self projectVersions add: aProjectVersion 
 ]
 
 { #category : #accessing }
@@ -37,6 +43,11 @@ VSYNProject >> fileHistoryWithId: anId [
 	^self fileHistories detect: [ :each | each id = anId ]
 ]
 
+{ #category : #public }
+VSYNProject >> fileVersionWithId: anId [
+	^self fileVersions detect: [ :each | each id = anId ]
+]
+
 { #category : #accessing }
 VSYNProject >> fileVersions [
 
@@ -52,10 +63,17 @@ VSYNProject >> fileVersions: anObject [
 { #category : #'initialize-release' }
 VSYNProject >> initialize [
 	super initialize.
+	projectVersions := OrderedCollection new.
 	fileHistories := OrderedCollection new.
 	fileVersions := OrderedCollection new.
 	projectName := ''.
 	projectURL := ''.
+]
+
+{ #category : #printing }
+VSYNProject >> printOn: aStream [
+	super printOn: aStream.
+	aStream << '('; << id asString; << ')'.
 ]
 
 { #category : #accessing }
@@ -80,6 +98,18 @@ VSYNProject >> projectURL [
 VSYNProject >> projectURL: anObject [
 
 	projectURL := anObject
+]
+
+{ #category : #accessing }
+VSYNProject >> projectVersions [
+
+	^ projectVersions
+]
+
+{ #category : #accessing }
+VSYNProject >> projectVersions: anObject [
+
+	projectVersions := anObject
 ]
 
 { #category : #public }

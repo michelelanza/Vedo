@@ -25,11 +25,17 @@ VSYNFileVersion >> initialize [
 
 ]
 
+{ #category : #printing }
+VSYNFileVersion >> printOn: aStream [
+	super printOn: aStream.
+	aStream << '('; << self fileHistory fileName asString; << ')'.
+]
+
 { #category : #public }
 VSYNFileVersion >> reifyWith: aJSONBlob [
 	super reifyWith: aJSONBlob.
 	self fileHistory: (self project fileHistoryWithId: (aJSONBlob at: #fileHistory)).
-	"self fileHistory:"
+	self fileHistory addFileVersion: self.
 	 
 	
 ]

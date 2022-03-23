@@ -77,6 +77,12 @@ VSYNFileHistory >> path: anObject [
 	path := anObject
 ]
 
+{ #category : #printing }
+VSYNFileHistory >> printOn: aStream [
+	super printOn: aStream.
+	aStream << '('; << fileName asString; << ')'.
+]
+
 { #category : #public }
 VSYNFileHistory >> reifyWith: aJSONBlob [
 	super reifyWith: aJSONBlob.
