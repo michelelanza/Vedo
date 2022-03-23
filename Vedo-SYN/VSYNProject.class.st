@@ -126,6 +126,37 @@ VSYNProject >> projectVersions: anObject [
 ]
 
 { #category : #public }
+VSYNProject >> reifyJSON: json [
+	self reifyWith: (json at: #project).
+	(json at: #fileHistories) do: [ :each | | newHistory |
+		newHistory := VSYNFileHistory new.
+		newHistory project: self.
+		newHistory reifyWith: each.
+		self addFileHistory: newHistory.
+		].
+	(json at: #fileVersions) do: [ :each | | newVersion |
+		newVersion := VSYNFileVersion new.
+		newVersion project: self.
+		newVersion reifyWith: each.
+		self addFileVersion: newVersion. 
+	].
+	(json at: #projectVersions) do: [ :each | | newVersion |
+		newVersion := VSYNProjectVersion  new.
+		newVersion project: self.
+		newVersion reifyWith: each.
+		self addProjectVersion: newVersion. 
+	].
+]
+
+{ #category : #public }
+VSYNProject >> reifyJSONFileNamed: aJSONFile [
+	| json |
+	json := aJSONFile asFileReference readStreamDo:
+		[ :readStream | (NeoJSONReader on: readStream) next ].
+	self reifyJSON: json.
+]
+
+{ #category : #public }
 VSYNProject >> reifyWith: aJSONBlob [
 	super reifyWith: aJSONBlob.
 	self projectName: (aJSONBlob at: #name). 
