@@ -76,4 +76,6 @@ VSYNProject >> projectURL: anObject [
 VSYNProject >> reifyWith: aJSONBlob [
 	super reifyWith: aJSONBlob.
 	self projectName: (aJSONBlob at: #name). 
+	self projectURL: (aJSONBlob at: #projectURL).
+
 ]
