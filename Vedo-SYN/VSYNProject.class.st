@@ -15,6 +15,11 @@ VSYNProject >> addFileHistory: aFileHistory [
 	self fileHistories add: aFileHistory 
 ]
 
+{ #category : #public }
+VSYNProject >> addFileVersion: aFileVersion [
+	self fileVersions add: aFileVersion
+]
+
 { #category : #accessing }
 VSYNProject >> fileHistories [
 
@@ -25,6 +30,11 @@ VSYNProject >> fileHistories [
 VSYNProject >> fileHistories: anObject [
 
 	fileHistories := anObject
+]
+
+{ #category : #public }
+VSYNProject >> fileHistoryWithId: anId [
+	^self fileHistories detect: [ :each | each id = anId ]
 ]
 
 { #category : #accessing }

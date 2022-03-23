@@ -2,7 +2,8 @@ Class {
 	#name : #VSYNNode,
 	#superclass : #VNode,
 	#instVars : [
-		'id'
+		'id',
+		'project'
 	],
 	#category : #'Vedo-SYN'
 }
@@ -23,6 +24,18 @@ VSYNNode >> id: anObject [
 VSYNNode >> initialize [
 	super initialize.
 	id := 0.
+]
+
+{ #category : #accessing }
+VSYNNode >> project [
+
+	^ project
+]
+
+{ #category : #accessing }
+VSYNNode >> project: anObject [
+
+	project := anObject
 ]
 
 { #category : #public }

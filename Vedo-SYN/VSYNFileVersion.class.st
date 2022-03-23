@@ -28,6 +28,7 @@ VSYNFileVersion >> initialize [
 { #category : #public }
 VSYNFileVersion >> reifyWith: aJSONBlob [
 	super reifyWith: aJSONBlob.
+	self fileHistory: (self project fileHistoryWithId: (aJSONBlob at: #fileHistory)).
 	"self fileHistory:"
 	 
 	
