@@ -6,7 +6,8 @@ Class {
 		'projectURL',
 		'projectVersions',
 		'fileHistories',
-		'fileVersions'
+		'fileVersions',
+		'lifetime'
 	],
 	#category : #'Vedo-SYN'
 }
@@ -68,6 +69,18 @@ VSYNProject >> initialize [
 	fileVersions := OrderedCollection new.
 	projectName := ''.
 	projectURL := ''.
+]
+
+{ #category : #accessing }
+VSYNProject >> lifetime [
+
+	^ lifetime
+]
+
+{ #category : #accessing }
+VSYNProject >> lifetime: anObject [
+
+	lifetime := anObject
 ]
 
 { #category : #printing }
