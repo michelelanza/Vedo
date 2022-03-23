@@ -151,8 +151,7 @@ VSYNProject >> reifyJSON: json [
 { #category : #public }
 VSYNProject >> reifyJSONFileNamed: aJSONFile [
 	| json |
-	json := aJSONFile asFileReference readStreamDo:
-		[ :readStream | (NeoJSONReader on: readStream) next ].
+	json := aJSONFile asFileReference readStreamDo: [ :readStream | (NeoJSONReader on: readStream) next ].
 	self reifyJSON: json.
 ]
 
